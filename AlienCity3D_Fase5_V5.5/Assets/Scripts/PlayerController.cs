@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	protected Vector3 gravidade = Vector3.zero;
 	protected Vector3 move = Vector3.zero;
 	private bool jump = false;
+    public Joystick joystick;
 
 
 	
@@ -23,10 +24,12 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
 	{
-		Vector3 move = Input.GetAxis ("Vertical") * transform.TransformDirection (Vector3.forward) * MoveSpeed;
-		transform.Rotate (new Vector3 (0, Input.GetAxis ("Horizontal") * RotationSpeed * Time.deltaTime, 0));
-		
-		if (!cc.isGrounded) {
+        Vector3 move = joystick.Vertical * transform.TransformDirection(Vector3.forward) * MoveSpeed;
+        transform.Rotate (new Vector3 (0, joystick.Horizontal * RotationSpeed * Time.deltaTime, 0));
+        //Vector3 move = Input.GetAxis ("Vertical") * transform.TransformDirection (Vector3.forward) * MoveSpeed;
+        //transform.Rotate (new Vector3 (0, Input.GetAxis ("Horizontal") * RotationSpeed * Time.deltaTime, 0));
+
+        if (!cc.isGrounded) {
 			gravidade += Physics.gravity * Time.deltaTime;
 		} 
 		else 
