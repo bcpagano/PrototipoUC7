@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 	protected Vector3 move = Vector3.zero;
 	private bool jump = false;
     public Joystick joystick;
+    
 
 
 	
@@ -54,8 +56,8 @@ public class PlayerController : MonoBehaviour {
 		} 
 		else 
 		{
-			if(Input.GetKeyDown("space"))
-			{
+			if (CrossPlatformInputManager.GetButtonDown("Jump"))
+            {
 				anim.SetTrigger("Pula");
 				jump = true;
 			}
@@ -65,4 +67,5 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+
 }
